@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rubik Küp ve Şimşekler</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #111;
+      overflow: hidden;
+      position: relative;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Şimşek efektleri */
+    .lightning {
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: rgba(255, 255, 255, 0.8);
+      opacity: 0;
+      pointer-events: none;
+      animation: lightningFlash 2s infinite;
+    }
+
+    @keyframes lightningFlash {
+      0% {
+        opacity: 0;
+      }
+      25% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+      75% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .lightning:nth-child(odd) {
+      animation-duration: 1.5s;
+    }
+
+    .lightning:nth-child(even) {
+      animation-duration: 3s;
+    }
+
+    /* 3D Küp stil */
+    .cube {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 150px;
+      height: 150px;
+      transform-style: preserve-3d;
+      animation: rotateCube 10s infinite linear;
+      transform: translate(-50%, -50%);
+    }
+
+    .cube div {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border: 2px solid #fff;
+    }
+
+    /* Rubik Küpü renkleri */
+    .front  { background-color: red; transform: rotateY(  0deg) translateZ(75px); }
+    .back   { background-color: orange; transform: rotateY(180deg) translateZ(75px); }
+    .left   { background-color: green; transform: rotateY(-90deg) translateZ(75px); }
+    .right  { background-color: blue; transform: rotateY( 90deg) translateZ(75px); }
+    .top    { background-color: white; transform: rotateX( 90deg) translateZ(75px); }
+    .bottom { background-color: yellow; transform: rotateX(-90deg) translateZ(75px); }
+
+    @keyframes rotateCube {
+      0% { transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+      100% { transform: translate(-50%, -50%) rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+    }
+
+    /* Metin stil */
+    .project-title {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 30px;
+      color: rgb(255, 0, 0);
+      font-weight: bold;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .project-title:hover {
+      transform: translateX(-50%) scale(1.5);
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Şimşekler -->
+  <div class="lightning"></div>
+  <div class="lightning"></div>
+  <div class="lightning"></div>
+  <div class="lightning"></div>
+
+  <!-- Rubik Küp -->
+  <div class="cube">
+    <div class="front"></div>
+    <div class="back"></div>
+    <div class="left"></div>
+    <div class="right"></div>
+    <div class="top"></div>
+    <div class="bottom"></div>
+  </div>
+
+  <!-- Metin -->
+  <div class="project-title">
+    İleri Programlama Projesi <br> Ali Enes GÜREL
+  </div>
+
+  <script>
+    function createLightning() {
+      const lightningElement = document.createElement('div');
+      lightningElement.classList.add('lightning');
+      document.body.appendChild(lightningElement);
+      setTimeout(() => {
+        lightningElement.remove();
+      }, 3000);
+    }
+
+    setInterval(createLightning, 3000);
+  </script>
+</body>
+</html>
