@@ -159,7 +159,7 @@ function displayMatrixAsBubbles(matrix) {
                           color = null; // Tanımlanmamış harf için varsayılan renk
                           break;
                 }
-                  // Tek satırlarda x pozisyonunu kaydır (y % 2 === 1 kontrolü)
+                  // Tek satırlarda x pozisyonunu kaydır
                   const offsetX = (y % 2 === 1) ? gridSize / 2 : 0;
                   // createBubble fonksiyonunu kullanarak balonu oluştur
                   if (!document.querySelector(`[data-row="${y}"][data-col="${x}"]`)) {
@@ -286,8 +286,8 @@ function dfsKontrol(row, col, targetChar) {
 
     // Altıgen komşuluk yönleri
     const directions = row % 2 != 0
-        ? [[-1, 0], [-1, 1], [0, -1], [0, 1], [1, 0], [1, 1]] // Çift satır
-        : [[-1, -1], [-1, 0], [0, -1], [0, 1], [1, -1], [1, 0]]; // Tek satır
+        ? [[-1, 0], [-1, 1], [0, -1], [0, 1], [1, 0], [1, 1]]
+        : [[-1, -1], [-1, 0], [0, -1], [0, 1], [1, -1], [1, 0]];
 
     // Komşuları sırayla kontrol et
     for (let [dx, dy] of directions) {
